@@ -8,7 +8,7 @@ public class TickHandler {
 	@SubscribeEvent
 	public void onClientTick(TickEvent.ClientTickEvent event) {
 	    if (event.phase == TickEvent.Phase.END) {
-	    	ActManager.tick();
+	    	ActManager.instance.tick();
 	    }
 	}
 }

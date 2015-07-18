@@ -1,16 +1,23 @@
 package net.teamio.director.cut;
 
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.util.Vec3;
 
 public class Keyframe {
-	public Vec3 position;
+	public double posX;
+	public double posY;
+	public double posZ;
+	
 	public float yaw;
 	public float pitch;
 	
-	public Keyframe(EntityClientPlayerMP player) {
-		position = Vec3.createVectorHelper(player.posX, player.posY, player.posZ);
-		yaw = player.rotationYaw;
-		pitch = player.rotationPitch;
+	public Keyframe() {
+		
 	}
+
+	@Override
+	public String toString() {
+		return "Keyframe [(" + posX + ", " + posY + ", " + posZ
+				+ ") (" + yaw + ", " + pitch + ")]";
+	}
+	
+	
 }

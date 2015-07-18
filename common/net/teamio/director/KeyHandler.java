@@ -1,9 +1,7 @@
 package net.teamio.director;
 
-import net.minecraft.client.Minecraft;
 import net.teamio.director.act.ActManager;
 import net.teamio.director.cut.CutManager;
-import net.teamio.director.cut.Keyframe;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 
@@ -14,11 +12,12 @@ public class KeyHandler {
 		if(Keybindings.toggleHud.isPressed()) {
 			System.out.println("Toggle");
 			//Minecraft.getMinecraft().thePlayer.posY += 1;
-			Minecraft.getMinecraft().thePlayer.moveEntity(0, 20, 0);
+//			Minecraft.getMinecraft().thePlayer.moveEntity(0, 20, 0);
+			CutManager.toggleGui();
 		} else if(Keybindings.saveKeyframe.isPressed()) {
-			CutManager.currentScene.movement.add(new Keyframe(Minecraft.getMinecraft().thePlayer));
+			CutManager.recordKeyframe();
 		} else if(Keybindings.play.isPressed()) {
-			ActManager.replay(CutManager.currentScene);
+			ActManager.instance.replay(CutManager.currentScene);
 		}
 	}
 }
