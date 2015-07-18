@@ -31,6 +31,12 @@ public class ActManager {
 		}
 
 		Keyframe currentKeyframe = playingScene.movement.get(frameId);
+		Keyframe lastKeyframe;
+		if(frameId > 0) {
+			lastKeyframe = playingScene.movement.get(frameId - 1);
+		} else {
+			lastKeyframe = currentKeyframe;
+		}
 		
 		System.out.println(currentKeyframe.position);
 		
@@ -48,11 +54,42 @@ public class ActManager {
 		}
 		
 		if(player.capabilities.isFlying) {
-		
+			float factor = (tick % 30) / 30f;
 			
-			player.setPositionAndRotation(
-					currentKeyframe.position.xCoord, currentKeyframe.position.yCoord, currentKeyframe.position.zCoord,
-					currentKeyframe.yaw, currentKeyframe.pitch);
+			double x = (currentKeyframe.position.xCoord - lastKeyframe.position.xCoord) * 1/30f;// + lastKeyframe.position.xCoord;
+			double y = (currentKeyframe.position.yCoord - lastKeyframe.position.yCoord) * 1/30f;// + lastKeyframe.position.yCoord;
+			double z = (currentKeyframe.position.zCoord - lastKeyframe.position.zCoord) * 1/30f;// + lastKeyframe.position.zCoord;
+			
+			float yaw = 	(currentKeyframe.yaw - lastKeyframe.yaw) * 1/30f;
+			float pitch = 	(currentKeyframe.pitch - lastKeyframe.pitch) * 1/30f;
+			
+//				 player.oldPosX = player.posX;
+//				 player.oldPosY = player.posY;
+//				 player.oldPosZ = player.posZ;
+//
+//				 player.oldRotationYaw = player.rotationYaw;
+//				 player.oldRotationPitch = player.rotationPitch;
+//			
+			
+			if(frameId == 0) {
+				player.setPositionAndRotation(
+						currentKeyframe.position.xCoord,
+						currentKeyframe.position.yCoord,
+						currentKeyframe.position.zCoord,
+                        currentKeyframe.yaw,
+						currentKeyframe.pitch);
+			}
+			//else {
+				player.motionX = x;
+				player.motionY = y;
+				player.motionZ = z;
+				
+				player.rotationYaw += yaw;
+				player.rotationPitch += pitch;
+//				player.setPositionAndRotation2(
+//						x, y, z,
+//						yaw, pitch, 10);
+//			}
 			//player.sendMotionUpdates();
 		}
 	}
