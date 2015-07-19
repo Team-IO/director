@@ -18,7 +18,7 @@ public class Keyframe {
 	public static enum Interpolation {
 		Teleport,
 		Linear,
-		Smoothed
+		Smooth
 	}
 	
 	public static enum Timing {
@@ -27,7 +27,13 @@ public class Keyframe {
 	}
 	
 	public Keyframe() {
+		// 5 seconds
+		this.time = 100;
 		
+		this.interpolationMovement = Interpolation.Linear;
+		this.interpolationRotation = Interpolation.Linear;
+		this.timingMovement = Timing.Dynamic;
+		this.timingRotation = Timing.Fixed;
 	}
 
 	public Keyframe(Keyframe other) {
