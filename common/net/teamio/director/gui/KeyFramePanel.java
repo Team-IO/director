@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
+import net.teamio.director.cut.Keyframe;
 import net.teamio.director.cut.Scene;
 
 public class KeyFramePanel extends JPanel {
@@ -14,19 +15,22 @@ public class KeyFramePanel extends JPanel {
 
 	public Scene scene;
 	public JScrollBar horizontalScrollbar;
+	public int selectedKeyframeID = -1;
+	public Keyframe selectedKeyframe = null;
 	
 	/**
 	 * Create the panel.
 	 */
 	public KeyFramePanel() {
-
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		int categoryWidth = 90;
+		int categoryWidth = g.getFontMetrics().stringWidth("Thingamabob");
 		int categoryHeight = 21;
 		int keyframeInset = 3;
+		
+		
 		
 		paintBox(g, "Player", 0, 0, categoryWidth, categoryHeight);
 		paintBox(g, "Thingamabob", 0, categoryHeight, categoryWidth, categoryHeight);
