@@ -9,7 +9,7 @@ import net.teamio.director.cut.Keyframe.Interpolation;
 import net.teamio.director.cut.Keyframe.Timing;
 
 public class Scene {
-	public float movementSpeed = 5;
+	public float movementSpeed = 15;
 	public float rotationSpeed = 2;
 	public float acceletaion = 0.01f;
 	public final List<Keyframe> movement;
@@ -26,10 +26,8 @@ public class Scene {
 			rotationSpeed = 1;
 		}
 		if(acceletaion <= 0) {
-			acceletaion = 0.1f;
+			acceletaion = 0.01f;
 		}
-		movementSpeed = 15;
-		acceletaion = 0.05f;
 		
 //		float moveX
 		
