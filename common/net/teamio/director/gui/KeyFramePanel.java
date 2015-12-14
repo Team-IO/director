@@ -1,12 +1,16 @@
 package net.teamio.director.gui;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+
+import java.awt.Dimension;
 
 import net.teamio.director.cut.Keyframe;
 import net.teamio.director.cut.Scene;
@@ -92,20 +96,52 @@ public class KeyFramePanel extends JPanel {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		int categoryWidth = g.getFontMetrics().stringWidth("Thingamabob");
 		
-		g.setColor(this.getBackground());
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		Color c_keyframe_normalBody = new Color(79, 148, 205);
+		Color c_keyframe_normalBorder = new Color(69, 129, 179);
+
+		Color c_keyframe_selectedBody = new Color(49, 92, 128);
+		Color c_keyframe_selectedBorder = new Color(39, 73, 102);
 		
-		g.setColor(this.getForeground());
+		Color c_category_titleBody = new Color(102, 95, 71);
+		Color c_category_titleBorder = new Color(153, 143, 107);
+		Color c_category_titleText = Color.WHITE;
 		
-		paintBox(g, "Player", 0, 0, categoryWidth, categoryHeight);
-		paintBox(g, "Thingamabob", 0, categoryHeight, categoryWidth, categoryHeight);
+		Color c_categoty_framesBody = new Color(51, 51, 51);
+		Color c_categoty_framesBorder = new Color(102, 102, 102);
 		
+		int categoryTitlePadding = 5;
+		
+		int categoryWidth = g.getFontMetrics().stringWidth("Thingamabob") + categoryTitlePadding*2;
+		
+		g.setColor(c_category_titleBody);
+		g.fillRect(0, 0, categoryWidth-1, this.getHeight());
+
+		g.setColor(c_category_titleText);
+		paintBox(g, "Player", categoryTitlePadding, 0, categoryWidth, categoryHeight);
+		paintBox(g, "Thingamabob", categoryTitlePadding, categoryHeight, categoryWidth, categoryHeight);
+
+		g.setColor(c_category_titleBorder);
+		g.drawLine(categoryWidth-1, 0, categoryWidth-1, this.getHeight());
+		paintBox(g, 0, 0, categoryWidth, categoryHeight);
+		paintBox(g, 0, categoryHeight, categoryWidth, categoryHeight);
+		
+
+		g.setColor(c_categoty_framesBody);
+		g.fillRect(categoryWidth, 0, this.getWidth()-categoryWidth, this.getHeight());
+		
+		g.setColor(c_categoty_framesBorder);
 		paintBox(g, categoryWidth, 0, this.getWidth() - categoryWidth, categoryHeight);
 		paintBox(g, categoryWidth, categoryHeight, this.getWidth() - categoryWidth, categoryHeight);
-		
-		if(scene != null) {
+		keyframeInset = 5;
+		if(scene == null) {
+			this.setPreferredSize(new Dimension(categoryWidth, categoryHeight*2));
+//			Container parent = this.getParent();
+//			if(parent instanceof JScrollPane) {
+//				JScrollPane scrollParent = (JScrollPane)parent;
+//				scrollParent.
+//			}
+		} else {
 			
 			scene.recalculateTimings();
 			
@@ -113,7 +149,6 @@ public class KeyFramePanel extends JPanel {
 			widths = new int[scene.movement.size()];
 			
 			int xOff = categoryWidth;
-			
 			
 			for(int i = 0; i < scene.movement.size(); i++) {
 				Keyframe keyframe = scene.movement.get(i);
@@ -126,30 +161,39 @@ public class KeyFramePanel extends JPanel {
 				widths[i] = width + keyframeInset;
 				
 				if(i == selectedKeyframeID) {
-					g.setColor(Color.ORANGE);
+					g.setColor(c_keyframe_selectedBody);
 				} else {
-					g.setColor(Color.RED);
+					g.setColor(c_keyframe_normalBody);
 				}
 //				g.fillRect();
 				g.fillRoundRect(xOff + keyframeInset, keyframeInset, width, categoryHeight - 2*keyframeInset,
-						5, 5);
+						2, 2);
+				if(i == selectedKeyframeID) {
+					g.setColor(c_keyframe_selectedBorder);
+				} else {
+					g.setColor(c_keyframe_normalBorder);
+				}
+				g.drawRoundRect(xOff + keyframeInset, keyframeInset, width, categoryHeight - 2*keyframeInset,
+						2, 2);
 				xOff += width + keyframeInset;
 			}
 			
 			if(selectedKeyframeID > scene.movement.size()) {
 				setSelectedKeyframe(-1);
 			}
-			
+			this.setPreferredSize(new Dimension(categoryWidth + xOff, categoryHeight*2));
 		}
 	}
 	
 	private void paintBox(Graphics g, String text, int x, int y, int width, int height) {
-		g.drawRect(x, y, width, height);
+//		g.drawLine(x, y + height, x + width, y + height);
+//		g.drawRect(x, y, width, height);
 		g.drawString(text, x, y + height - 3);
 	}
 	
 	private void paintBox(Graphics g, int x, int y, int width, int height) {
-		g.drawRect(x, y, width, height);
+		g.drawLine(x, y + height, x + width, y + height);
+//		g.drawRect(x, y, width, height);
 	}
 
 	public KeyframeListener getListener() {

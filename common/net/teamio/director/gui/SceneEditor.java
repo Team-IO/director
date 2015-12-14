@@ -666,7 +666,7 @@ public class SceneEditor {
 			btnDelete.setEnabled(false);
 			btnDuplicate.setEnabled(false);
 			
-			lblKeyframeX.setText("Keyframe: X");
+			lblKeyframeX.setText("No Keyframe Selected");
 		} else {
 			lblKeyframeX.setText("Keyframe: " + keyFramePanel.selectedKeyframeID);
 			

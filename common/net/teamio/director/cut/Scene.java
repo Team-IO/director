@@ -28,7 +28,7 @@ public class Scene {
 		if(acceletaion <= 0) {
 			acceletaion = 0.01f;
 		}
-		
+		movementSpeed = 2;
 //		float moveX
 		
 		// For now, we ignore the first frame, as that will currently always be a teleport.
