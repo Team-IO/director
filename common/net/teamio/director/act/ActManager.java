@@ -4,7 +4,6 @@ import javax.vecmath.Vector3d;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.util.Vec3;
 import net.teamio.director.cut.Keyframe;
 import net.teamio.director.cut.Scene;
 

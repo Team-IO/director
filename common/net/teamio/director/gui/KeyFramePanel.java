@@ -1,16 +1,13 @@
 package net.teamio.director.gui;
 
 import java.awt.Color;
-import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-
-import java.awt.Dimension;
 
 import net.teamio.director.cut.Keyframe;
 import net.teamio.director.cut.Scene;
