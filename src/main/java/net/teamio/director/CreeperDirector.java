@@ -1,15 +1,15 @@
 package net.teamio.director;
 
-public class CreepyDirector {
-	private CreepyDirector() {
+public class CreeperDirector {
+	private CreeperDirector() {
 		//Util Class
 	}
 	
-	public static final String MOD_ID = "creepy_director";
-	public static final String MOD_NAME = "Creepy Director";
+	public static final String MOD_ID = "creeper_director";
+	public static final String MOD_NAME = "Creeper Director";
 	public static final String MOD_VERSION = "@VERSION@";
 	public static final String MOD_AUTHOR1 = "founderio";
-	public static final String MOD_DESCRIPTION = "Creepy Director";
+	public static final String MOD_DESCRIPTION = "Creeper Director, an experimental cutscene mod.";
 	public static final String MOD_CREDITS = "";
 	public static final String MOD_LOGO_PATH = "";
 	

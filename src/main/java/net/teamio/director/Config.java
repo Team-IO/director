@@ -29,7 +29,7 @@ public class Config {
 	@SubscribeEvent
 	public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
 	{
-		if (event.modID.equalsIgnoreCase(CreepyDirector.MOD_ID))
+		if (event.modID.equalsIgnoreCase(CreeperDirector.MOD_ID))
 		{
 			loadConfig();
 		}
