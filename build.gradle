@@ -17,37 +17,28 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "0.1"
-group = "net.teamio.director"
-archivesBaseName = "creepy-director-1.7.10"
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = config.mod_version
+group = config.mod_group
+archivesBaseName = "${config.mod_name}-${config.mc_version}"
+
+if(System.env.BUILD_NUMBER)
+	version = "${config.mod_version}.b${System.env.BUILD_NUMBER}"
 
 minecraft {
-    version = "1.7.10-10.13.4.1558-1.7.10"
-    runDir = ""
+    version = "${config.mc_version}-${config.forge_version}-${config.mc_version}"
+    runDir = "run"
     replace "@VERSION@", project.version
 }
 
-sourceSets {
-    main {
-        java {
-            srcDir 'common'
-        }
-        resources {
-            srcDir 'resources'
-        }
-    }
-    test {
-        java {
-           srcDir 'test'
-        }
-    }
-}
-
 dependencies {
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-	// compile 'codechicken:CodeChickenLib:1.7.10-1.1.1.104:dev'
-    // compile fileTree(dir: 'lib', include: '*.jar')
 }
 
 jar {

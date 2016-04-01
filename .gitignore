@@ -1,21 +1,21 @@
-.DS_Store
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
-/bin
-/config
-/crash-reports
-/logs
-/mods
-/resourcepacks
-/screenshots
-/saves
-/options.txt
-/build
-/asm
-/usernamecache.json
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
 
-/.pmd
-/.classpath
-/.project
-/.gradle
-/.metadata
-/.settings
+# gradle
+build
+.gradle
+
+# run
+run
