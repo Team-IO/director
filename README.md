@@ -9,9 +9,13 @@ You are also welcome to [support us on Patreon](https://www.patreon.com/Team_IO?
 ## Building the mod
 Creeper Director uses a fairly simple implementation of ForgeGradle. To build a ready-to-use jar, you can use the gradle wrapper delivered with the rest of the source code.  
 For Windows systems, run this in the console:
+
     gradlew.bat build
+
 For *nix systems, run this in the terminal:
+
     ./gradlew build
+
 Installed Gradle versions should also work fine.
 
 ## Some info on the internal structure:
